@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm"
 
 export class User1671553610660 implements MigrationInterface {
 
@@ -14,62 +14,10 @@ export class User1671553610660 implements MigrationInterface {
                     generationStrategy: "increment"
                 },
                 {
-                    name: "name",
-                    type: "varchar",
-                    length: "255",
-                    isNullable: false
-                },
-                {
-                    name: "cpf",
-                    type: "varchar",
-                    isNullable: false
-                },
-                {
-                    name: "cep",
-                    type: "varchar",
-                    length: "255",
-                    isNullable: false
-                },
-                {
-                    name: "street",
-                    type: "varchar",
-                    length: "255",
-                    isNullable: false
-                },
-                {
-                    name: "uf",
-                    type: "varchar",
-                    length: "36",
-                    isNullable: false
-                },
-                {
-                    name: "city",
-                    type: "varchar",
-                    length: "255",
-                    isNullable: false
-                },
-                {
-                    name: "district",
-                    type: "varchar",
-                    length: "255",
-                    isNullable: false
-                },
-                {
-                    name: "state",
-                    type: "varchar",
-                    length: "255",
-                    isNullable: false
-                },
-                {
-                    name: "phone",
-                    type: "varchar",
-                    length: "255",
-                    isNullable: false
-                },
-                {
                     name: "email",
                     type: "varchar",
                     length: "255",
+                    isUnique: true,
                     isNullable: false
                 },
                 {
@@ -77,9 +25,38 @@ export class User1671553610660 implements MigrationInterface {
                     type: "varchar",
                     length: "255",
                     isNullable: false
+                },
+                {
+                    name: "photo",
+                    type: "varchar",
+                    length: "255",
+                    isNullable: true,
+                },
+                {
+                    name: 'personId',
+                    type: 'int',
+                    isNullable: false,
+                },
+                {
+                    name: 'createdAt',
+                    type: 'datetime',
+                    default: 'CURRENT_TIMESTAMP',
+                },
+                {
+                    name: 'updatedAt',
+                    type: 'datetime',
+                    default: 'CURRENT_TIMESTAMP',
                 }
             ]
-        }))
+        }));
+
+        await queryRunner.createForeignKey("user", new TableForeignKey({
+            columnNames: ["personId"],
+            referencedColumnNames: ["id"],
+            referencedTableName: "person",
+            name: "FK_users_Person",
+            onDelete: "CASCADE"
+        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
