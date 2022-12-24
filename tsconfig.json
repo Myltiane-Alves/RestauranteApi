@@ -1,32 +1,23 @@
 {
-  "compilerOptions": {
-    "target": "es2021",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "module": "commonjs",
-    "rootDir": "./src",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],
-    "allowJs": true,
-    "outDir": "./dist",
-    "removeComments": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@controllers/*": [
-        "./src/controllers/*"
-      ],
-      "@models/*": [
-        "./src/models/*"
-      ],
-      "@config/*": [
-        "./src/config/*"
-      ],
-    }
-  }
+	"compilerOptions": {
+		"target": "es2018",
+		"lib": ["es5", "es6", "ES2018"],
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"outDir": "./dist",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictPropertyInitialization": false
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"],
+	"ts-node": {
+		"files": true
+	}
 }
