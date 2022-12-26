@@ -51,8 +51,7 @@ export class Person1671913694303 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey("user", "FK_users_Person");
-        await queryRunner.dropTable("user")
+        await queryRunner.dropTable("person")
     }
 
 }

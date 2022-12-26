@@ -1,8 +1,9 @@
 import internal from "stream";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('users')
+@Entity('person')
 export class Person {
+    [x: string]: any;
     @PrimaryGeneratedColumn('increment')
     id: number;
 

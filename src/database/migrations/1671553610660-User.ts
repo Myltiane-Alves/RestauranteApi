@@ -33,8 +33,21 @@ export class User1671553610660 implements MigrationInterface {
                     isNullable: true,
                 },
                 {
-                    name: 'personId',
-                    type: 'int',
+                    name: 'name',
+                    type: 'varchar',
+                    length: '255',
+                    isNullable: false
+                },
+                {
+                    name: "phone",
+                    type: "varchar",
+                    length: "20",
+                    isNullable: false,
+                },
+                {
+                    name: "document",
+                    type: "varchar",
+                    length: "14",
                     isNullable: false,
                 },
                 {
@@ -50,13 +63,7 @@ export class User1671553610660 implements MigrationInterface {
             ]
         }));
 
-        await queryRunner.createForeignKey("user", new TableForeignKey({
-            columnNames: ["personId"],
-            referencedColumnNames: ["id"],
-            referencedTableName: "person",
-            name: "FK_users_Person",
-            onDelete: "CASCADE"
-        }));
+
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

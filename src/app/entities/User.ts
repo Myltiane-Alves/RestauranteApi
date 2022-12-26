@@ -1,9 +1,22 @@
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { 
+    BeforeInsert, 
+    BeforeUpdate, 
+    Column, 
+    CreateDateColumn, 
+    Entity, 
+    JoinColumn, 
+    OneToOne, 
+    PrimaryGeneratedColumn
+} from "typeorm";
 import { hashSync } from "bcrypt";
+import { Person } from "./Person";
 @Entity("users")
 export class User {
     @PrimaryGeneratedColumn("increment")
     id: number;
+
+    @Column()
+    name: string;
 
     @Column()
     email: string;
@@ -13,9 +26,12 @@ export class User {
 
     @Column()
     photo: string;
-    
+
     @Column()
-    personId: number;
+    phone: string;
+
+    @Column()
+    document: string;
 
     @CreateDateColumn()
     createdAt: Date;
