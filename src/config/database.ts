@@ -2,7 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 
 import {  DataSource } from "typeorm";
-import { Person } from '../app/entities/Person';
+import { Contact } from '../app/entities/Contact';
 import { User } from '../app/entities/User';
 
 export const AppDataSource = new DataSource({
@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
     password: process.env.TYPEORM_PASSWORD,
     migrations: ["src/database/migrations/*.ts"],
     database: "restaurante",
-    entities: [User, Person],
+    entities: [User, Contact],
     synchronize: true,
     logging: true,
     logger: "file",

@@ -4,12 +4,9 @@ import {
     Column, 
     CreateDateColumn, 
     Entity, 
-    JoinColumn, 
-    OneToOne, 
     PrimaryGeneratedColumn
 } from "typeorm";
 import { hashSync } from "bcrypt";
-import { Person } from "./Person";
 @Entity("users")
 export class User {
     @PrimaryGeneratedColumn("increment")

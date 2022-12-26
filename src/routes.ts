@@ -1,4 +1,5 @@
 import { Router } from "express";
+import ContactController from "./app/controllers/ContactController";
 
 import UserController from "./app/controllers/UserController";
 
@@ -15,8 +16,11 @@ class Routes {
         });
 
 
-        this.routes.post('/users', UserController.store);       
+        this.routes.post('/users', UserController.store);   
 
+        this.routes.post('/contacts', ContactController.store)
+        this.routes.get('/contacts', ContactController.getAll)
+        this.routes.delete('/contacts/:id', ContactController.delete)
     }   
 
 }

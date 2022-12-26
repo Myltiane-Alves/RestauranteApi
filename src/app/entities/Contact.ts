@@ -1,9 +1,9 @@
 import internal from "stream";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('person')
-export class Person {
-    [x: string]: any;
+@Entity('contacts')
+export class Contact {
+    
     @PrimaryGeneratedColumn('increment')
     id: number;
 
@@ -11,13 +11,13 @@ export class Person {
     name: string;
 
     @Column()
-    birthAt: Date;
+    email: string;
 
     @Column()
     phone: string;
 
     @Column()
-    document: string;
+    message: string;
     
     @CreateDateColumn()
     createdAt: Date;
