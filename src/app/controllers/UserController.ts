@@ -44,6 +44,33 @@ class UserControler {
 
     async getByEmail(req: Request, res: Response) {
 
+        const user = await userRepository.findOne({
+            where: { email: req.body.email },
+            select: [
+                "email"
+            ] 
+        });
+
+        if(!user) {
+            return res.status(401).json({message: "User not found"});
+        }
+
+        return res.json({ message: "Email already exists"});
+    }
+
+    async verify(req: Request, res: Response) {
+
+        try {
+            const emailExist = await userRepository.findOne({
+                where: { email: req.body.email},
+            });
+
+            if(emailExist) {
+                return res.status(200).json({ message: "Email already exists"});
+            }
+        } catch (error) {
+            return res.status(100).json({ message: "Email not found"})
+        }
     }
 }
 
