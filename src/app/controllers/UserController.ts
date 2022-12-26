@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { userRepository } from "../repositories/userRepository";
+import bcrypt from "bcrypt";
 
 class UserControler {
     async store(req: Request, res: Response) {
@@ -71,6 +72,27 @@ class UserControler {
         } catch (error) {
             return res.status(100).json({ message: "Email not found"})
         }
+    }
+
+    async checkPassword(req: Request, res: Response) {
+        const user = await userRepository.findOne({
+            where: { password: req.body.password},
+            select: [
+                'password'
+            ]
+        });
+
+        if(!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const isValidPassword = await bcrypt.compare(req.body.password, user.password);
+
+        if(!isValidPassword) {
+            return res.status(401).json({ message: "Invalid password" });
+        }
+
+        return res.status(200).json({ message: "Password is valid" });
     }
 }
 
